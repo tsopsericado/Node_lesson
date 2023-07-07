@@ -1,0 +1,23 @@
+{
+  "name": "time-ms",
+  "version": "1.0.0",
+  "description": "A time microservice.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js",
+    "start": "nodemon myApp.js"
+  },
+  "keywords": [
+    "microservice",
+    "time",
+    "node",
+    "express"
+  ],
+  "author": "Ricardo",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2",
+    "nodemon": "^2.0.22"
+  }
+}
