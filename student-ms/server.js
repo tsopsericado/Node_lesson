@@ -70,20 +70,9 @@ const updateStudents = (req, res) => {
 
     return student;
   });
-  // console.log(students.name);
 
   res.send(results);
 
-  // const id =req.params.Id;
-
-  // if (students.Id == id) {
-  //   students = { ...students, ...req.body };
-  //   res.json;
-  // }
-
-  // students.forEach((studt)=>{
-  //   console.log(studt.name)
-  // })
 };
 
 //Middlewares
@@ -94,7 +83,7 @@ app.use(bodyParser.json({ extended: false }));
 app.get("/students", StudentsGroup);
 app.get("/students/:id", studentId);
 app.post("/students/create-student", createStudent);
-app.delete("/students/delstudent/:id", deleteStudents);
+app.put("/students/delstudent/:id", deleteStudents);
 app.put("/students/update-student/:id", updateStudents);
 
 //listening port
