@@ -44,11 +44,12 @@ const studentId = (req, res) => {
 
 //creating a new student
 const createStudent = (req, res)=>{
-    const { name, age, level } = req.body
-    console.log(req.body)
-    console.log( name, age, level)
-    res.json({ name, age, level})
-  
+    // const { name, age, level } = req.body
+    // console.log(req.body)
+    // console.log( name, age, level)
+    // res.json({ name, age, level})
+    students = req.body;
+    res.json({message: "JSON object created successfully"});
 }
 
 //deleting a student from the list
@@ -72,14 +73,14 @@ res.send('JSON updated succesfully')
 
 
 //middlewares
-app.use(bodyParser.json({extended:true}));
+app.use(bodyParser.json({extended:false}));
 // app.use(bodyParser)
 
 //routes
 app.get("/students", StudentsGroup)
 app.get("/students/:id", studentId)
 app.post('/students/create-student', createStudent)
-app.get("/students/delstudent/id", deleteStudents)
+app.delete("/students/delstudent/:id", deleteStudents)
 app.get("/students/update-student/", updateStudents)
 
 
