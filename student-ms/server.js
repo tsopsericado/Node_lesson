@@ -29,7 +29,6 @@ const students = [
 
 let app = express();
 
-// app.use(bodyParser.json());
 
 // getting the array of students
 const StudentsGroup = (req, res) => {
