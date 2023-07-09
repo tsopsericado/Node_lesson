@@ -4,19 +4,19 @@ const students = [
   {
     Id: "1",
     name: "ricardo",
-    age: "25",
+    age: "27",
     level: "two",
   },
   {
     Id: "2",
     name: "gael",
-    age: "20",
+    age: "27",
     level: "three",
   },
   {
     Id: "3",
     name: "brice",
-    age: "30",
+    age: "31",
     level: "four",
   },
   {
@@ -50,11 +50,22 @@ const createStudent = (req, res) => {
 
 //deleting a student from the list
 const deleteStudents = (req, res) => {
-  students = students.filter((object) => {
-    return object.Id != req.params.id;
-  });
-  res.json(students || "JSON object deleted succesfully") ||
-    res.status(404).json({ error: "JSON object  not found" });
+  // students = students.filter((object) => {
+  //   return object.Id != req.params.id;
+  // });
+  const id = parseInt(req.params.id);
+  const index = students.find((item) => item.Id === id);
+
+  if (index === -1) {
+    return res.status(404).json({ message: "Object not found" });
+  }
+
+  const deletedObj = students.filter((student) => +student.Id !== id);
+
+  res.json(deletedObj);
+
+  // res.json(students || "JSON object deleted succesfully") ||
+  //   res.status(404).json({ error: "JSON object  not found" });
 };
 
 //update the JSON object with new values from the request body
@@ -72,7 +83,6 @@ const updateStudents = (req, res) => {
   });
 
   res.send(results);
-
 };
 
 //Middlewares
@@ -83,7 +93,7 @@ app.use(bodyParser.json({ extended: false }));
 app.get("/students", StudentsGroup);
 app.get("/students/:id", studentId);
 app.post("/students/create-student", createStudent);
-app.put("/students/delstudent/:id", deleteStudents);
+app.delete("/students/delstudent/:id", deleteStudents);
 app.put("/students/update-student/:id", updateStudents);
 
 //listening port
